@@ -16,7 +16,7 @@ class Settings_Page implements Bootable {
 
 	public function body_class($classes) {
 		if (is_plugin_settings_page()) {
-			$classes .= 'settings-page';
+			$classes .= ' settings-page';
 		}
 
 		return $classes;

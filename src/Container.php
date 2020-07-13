@@ -28,6 +28,7 @@ final class Container extends Singleton {
 				Settings_Page::class => create(),
 				Enqueue_Backend_Assets::class => create(),
 				Enqueue_Frontend_Assets::class => create(),
+				Prettier_Cart::class => create(),
 			])
 		);
 

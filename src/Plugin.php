@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: vnh_name
+ * Plugin Name: Prettier mini cart
  * Description: vnh_description
  * Version: vnh_version
  * Tags: vnh_tags
@@ -56,6 +56,9 @@ final class Plugin implements Loadable {
 			$services->get(Plugin_Row_Meta::class)->boot();
 			$services->get(Settings_Page::class)->boot();
 			$services->get(Enqueue_Backend_Assets::class)->boot();
+		} else {
+			 $services->get(Prettier_Cart::class)->boot();
+			 $services->get(Enqueue_Frontend_Assets::class)->boot();
 		}
 	}
 
