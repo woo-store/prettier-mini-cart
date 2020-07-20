@@ -22,7 +22,7 @@ class Enqueue_Frontend_Assets extends Register_Assets implements Enqueueable {
 		];
 		$this->styles = [
 			 PLUGIN_SLUG => [
-			 	'src' => get_plugin_url('build/settings_page.js'),
+			 	'src' => get_plugin_url('build/settings_page.css'),
 			 ]
 		];
 	}
