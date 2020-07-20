@@ -2,19 +2,19 @@ import apiFetch from "@wordpress/api-fetch";
 
 export default class App extends Component {
   componentDidMount() {
-	 apiFetch({path: '/src/v1/settings/products'}).then((settings) => {
-		console.log(settings);
-		// this.setState({
-		//   configs: {...settings},
-		//   isAPILoaded: true,
-		// });
-	 });
+	 // apiFetch({path: '/src/v1/settings/products'}).then((settings) => {
+		// console.log(settings);
+		// // this.setState({
+		// //   configs: {...settings},
+		// //   isAPILoaded: true,
+		// // });
+	 // });
   }
 
   render() {
 
 	 return (
-		<div className="fixed position-cart">
+		<div className="fixed position-cart-left-top">
 		  <div className="max-w-sm rounded overflow-hidden shadow-lg">
 			 <div className="px-6 py-4">
 				<div className="font-bold text-xl mb-2">The Coldest Sunset</div>

@@ -20,6 +20,11 @@ class Enqueue_Frontend_Assets extends Register_Assets implements Enqueueable {
 				],
 			],
 		];
+		$this->styles = [
+			 PLUGIN_SLUG => [
+			 	'src' => get_plugin_url('build/settings_page.js'),
+			 ]
+		];
 	}
 
 	public function boot() {
@@ -30,5 +35,6 @@ class Enqueue_Frontend_Assets extends Register_Assets implements Enqueueable {
 
 	public function enqueue() {
 		wp_enqueue_script(PLUGIN_SLUG);
+		wp_enqueue_style(PLUGIN_SLUG);
 	}
 }
