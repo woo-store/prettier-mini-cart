@@ -49,7 +49,6 @@ final class Plugin implements Loadable {
 		$services->get(WordPress_Checker::class)->init();
 
 		$services->get(Allowed_HTML::class)->boot();
-		$services->get(Enqueue_Frontend_Assets::class)->boot();
 
 		if (is_admin()) {
 			$services->get(Plugin_Action_Links::class)->boot();
@@ -57,8 +56,8 @@ final class Plugin implements Loadable {
 			$services->get(Settings_Page::class)->boot();
 			$services->get(Enqueue_Backend_Assets::class)->boot();
 		} else {
-			 $services->get(Prettier_Cart::class)->boot();
-			 $services->get(Enqueue_Frontend_Assets::class)->boot();
+			$services->get(Prettier_Cart::class)->boot();
+			$services->get(Enqueue_Frontend_Assets::class)->boot();
 		}
 	}
 

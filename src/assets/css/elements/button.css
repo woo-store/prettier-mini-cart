@@ -1,4 +1,4 @@
-.button {
+.btn {
 	background-color: var(--color-fill);
 	color: var(--color-content);
 	padding: var(--button-padding);
