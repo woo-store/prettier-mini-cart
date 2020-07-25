@@ -9,3 +9,14 @@
 	font-size: var(--badge-size, 0.6rem);
 	@apply px-1 py-px font-medium rounded font-secondary;
 }
+.badge-circle {
+	 background-color: var(--color-fill);
+	 color: var(--color-content);
+	 display: inline-flex;
+	 align-items: center;
+	 align-self: center;
+	 vertical-align: middle;
+	 justify-content: center;
+	 font-size: var(--badge-size, 0.6rem);
+	 @apply p-5 font-medium rounded-full font-secondary;
+}

@@ -4,8 +4,8 @@
 	"scripts": {
 		"clean:composer": "rm -rf src/vendor",
 		"start": "webpack --watch",
-       "svgr": "svgr src/assets/svg/ -d src/assets/js/icons/ --icon",
-       "build": "export NODE_ENV=production && webpack --mode=production",
+		"svgr": "svgr src/assets/svg/ -d src/assets/js/icons/ --icon",
+		"build": "export NODE_ENV=production && webpack --mode=production",
 		"build:tailwind": "postcss src/assets/css/settings_page.css -o src/assets/css/settings_page.output.css",
 		"build:analytic": "webpack --mode=production --analytic"
 	},

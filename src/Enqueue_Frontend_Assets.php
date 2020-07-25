@@ -10,7 +10,7 @@ class Enqueue_Frontend_Assets extends Register_Assets implements Enqueueable {
 		$this->scripts = [
 			PLUGIN_SLUG => [
 				'src' => get_plugin_url('build/frontend.js'),
-				'deps' => ['wp-element'],
+				'deps' => ['wp-element', 'wp-i18n', 'wp-components'],
 				'localize_script' => [
 					'apiUrl' => esc_url_raw(get_rest_url()),
 					'wcStoreApiNonce' => esc_js(wp_create_nonce('wc_store_api')),
@@ -23,6 +23,7 @@ class Enqueue_Frontend_Assets extends Register_Assets implements Enqueueable {
 		$this->styles = [
 			PLUGIN_SLUG => [
 				'src' => get_plugin_url('build/settings_page.css'),
+				'deps' => ['wp-components'],
 			],
 		];
 	}
