@@ -11,7 +11,7 @@
  * Document URI: vnh_document_uri
  * Text Domain: vnh_textdomain
  * Tested up to: WordPress vnh_tested_up_to
- * WC requires at least: vnh_wc_requires
+ * WC requires at least: 8
  * WC tested up to: vnh_wc_tested_up_to
  */
 
@@ -24,6 +24,7 @@ use vnh\Plugin_Row_Meta;
 use vnh_namespace\api\Setting_API;
 use vnh_namespace\tools\PHP_Checker;
 use vnh_namespace\tools\WooCommerce_Checker;
+use vnh_namespace\tools\WooCommerce_Required;
 use vnh_namespace\tools\WordPress_Checker;
 use function vnh\plugin_languages_path;
 
@@ -46,10 +47,6 @@ final class Plugin implements Loadable {
 
 		$services->get(Setting_API::class)->boot();
 
-		$services->get(PHP_Checker::class)->init();
-		$services->get(WordPress_Checker::class)->init();
-		$services->get(WooCommerce_Checker::class)->init();
-
 		$services->get(Allowed_HTML::class)->boot();
 		$services->get(Enqueue_Frontend_Assets::class)->boot();
 
@@ -63,10 +60,23 @@ final class Plugin implements Loadable {
 
 	public function boot() {
 		add_action('plugin_loaded', [$this, 'plugin_loaded']);
+		add_action('init', [$this, 'checkers']);
 	}
 
 	public function plugin_loaded() {
 		load_plugin_textdomain('vnh_textdomain', false, plugin_languages_path(PLUGIN_FILE));
+	}
+
+	public function checkers() {
+		$services = Container::instance()->services;
+
+		$services->get(PHP_Checker::class)->init();
+		$services->get(WordPress_Checker::class)->init();
+		if (defined('WC_VERSION')) {
+			$services->get(WooCommerce_Checker::class)->init();
+		} else {
+			$services->get(WooCommerce_Required::class)->init();
+		}
 	}
 }
 
