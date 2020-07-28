@@ -8,7 +8,7 @@ const numberOfDecimal = (number = 0) => {
 };
 
 const formatPrice = (price = 1, minorUnit = 0, symbol = "$") => {
-	return (price / numberOfDecimal(minorUnit)).toFixed(minorUnit) + symbol;
+	return numberWithCommas((price / numberOfDecimal(minorUnit)).toFixed(minorUnit)) + symbol;
 };
-
+const numberWithCommas = (str) => str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 export { formatPrice };

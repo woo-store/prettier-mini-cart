@@ -1,4 +1,11 @@
 import { render } from "@wordpress/element";
-import App from "./App";
+import App from "./app";
 
-render(<App />, document.getElementById("prettier-cart"));
+let reload = false;
+
+jQuery(document).ready(function ($) {
+	$("body").on("added_to_cart", function () {
+		reload = true;
+	});
+});
+render(<App reload={reload} />, document.getElementById("prettier-cart"));

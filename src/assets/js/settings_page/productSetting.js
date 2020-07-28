@@ -13,7 +13,7 @@ export default class ProductSetting extends Component {
 	render() {
 		const { productQuantity, removeProduct, priceTag, totalPrice, subtotalPrice, shippingPrice, taxPrice, suggestProduct } = this.state;
 		return (
-			<PanelBody title={__("Product settings", "vnh_textdomain")}>
+			<PanelBody className="bg-white" title={__("Product settings", "vnh_textdomain")}>
 				<PanelRow>
 					<ToggleControl
 						label={__("Change product quantity", plugin.trans)}

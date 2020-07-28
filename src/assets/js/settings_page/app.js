@@ -1,8 +1,9 @@
 import { Button, Placeholder, Spinner } from "@wordpress/components";
 import apiFetch from "@wordpress/api-fetch";
-import CartSetting from "./setting/index";
-import ProductSettings from "./setting/ProductSetting";
+import CartSetting from "./cartSetting";
+import ProductSettings from "./productSetting";
 import { isEmpty } from "lodash";
+import Preview from "./preview";
 
 class App extends Component {
 	state = {
@@ -46,6 +47,7 @@ class App extends Component {
 			shippingPrice: true,
 			taxPrice: true,
 			colorMain: "#FF5187",
+			colorText: "#FFFFFF",
 		},
 	};
 
@@ -81,8 +83,8 @@ class App extends Component {
 					<div className="bg-white py-6 mb-4">
 						<div className="container w-9/12 lg:w-7/12 mx-auto">
 							<div className="flex items-center">
-								<h1>{plugin.pluginName}</h1>
-								<div className="ml-3 text-xs rounded font-light bg-gray-200 px-1 border-gray-300">v{plugin.pluginVersion}</div>
+								<h1>{pluginName}</h1>
+								<div className="ml-3 text-xs rounded font-light bg-gray-200 px-1 border-gray-300">v{pluginVersion}</div>
 							</div>
 						</div>
 					</div>
@@ -100,18 +102,23 @@ class App extends Component {
 				<div className="bg-white py-6 mb-4">
 					<div className="container w-9/12 lg:w-7/12 mx-auto">
 						<div className="flex items-center">
-							<h1>{plugin.name}</h1>
-							<div className="ml-3 text-xs rounded font-light bg-gray-200 px-1 border-gray-300">v{plugin.version}</div>
+							<h1>{pluginName}</h1>
+							<div className="ml-3 text-xs rounded font-light bg-gray-200 px-1 border-gray-300">v{pluginVersion}</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="container w-9/12 lg:w-7/12 mx-auto">
-					<CartSetting configs={configs} positions={positions} onChange={this.onChange} />
-					<ProductSettings configs={configs} onChange={this.onChange} />
-					<Button isPrimary isLarge disabled={isAPISaving} onClick={() => this.saveSettings()}>
-						{__("Save Settings", "vnh_textdomain")}
-					</Button>
+				<div className="grid grid-cols-3 gap-2 px-3">
+					<div className="sm:col-span-3 md:col-span-1">
+						<Preview />
+					</div>
+					<div className="sm:col-span-3 md:col-span-2">
+						<CartSetting configs={configs} positions={positions} onChange={this.onChange} />
+						<ProductSettings configs={configs} onChange={this.onChange} />
+						<Button className="mt-3" isPrimary isLarge disabled={isAPISaving} onClick={() => this.saveSettings()}>
+							{__("Save Settings", "vnh_textdomain")}
+						</Button>
+					</div>
 				</div>
 			</>
 		);

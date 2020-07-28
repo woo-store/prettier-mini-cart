@@ -1,7 +1,7 @@
 import http from "../http";
 import { isEmpty } from "lodash";
 import CartContent from "./cart";
-import { formatPrice } from "./helper";
+import { formatPrice } from "../helper";
 import { Cart } from "../icons";
 import { Spinner } from "@wordpress/components";
 
@@ -13,12 +13,22 @@ export default class App extends Component {
 		countItems: 0,
 		isLoading: false,
 		showContentCart: false,
+		reload: this.props.reload,
 	};
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log(nextProps.reload);
+		if (nextState.reload !== nextProps.reload) {
+			return true;
+		}
+		return false;
+	}
 	async componentDidMount() {
 		try {
+			console.log(2);
 			// listen event click
 			document.addEventListener("click", this.handleClick);
 			const { data } = await http.get("wc/store/cart");
+			console.log(data);
 			this.setState({
 				products: data.items,
 				totals: data.totals,
@@ -58,14 +68,19 @@ export default class App extends Component {
 					className="absolute left-0 top-0 w-24 h-24 text-center bg-default z--1"
 				>
 					<Cart width="60" height="60" />
-					<div className="badge-circle ~success ~high absolute position-quantity">
+					<div
+						className="badge-circle ~success ~high absolute position-quantity"
+						style={{ "background-color": plugin.settings.colorMain || "#ff5187", color: plugin.settings.colorText || "#FFFFFF" }}
+					>
 						<small>{countItems}</small>
 					</div>
-					<small className="section ~success ~high whitespace-no-wrap p-4 mt-3 absolute left-0">
+					<small
+						className="section ~success ~high whitespace-no-wrap p-4 mt-3 absolute left-0"
+						style={{ "background-color": plugin.settings.colorMain || "#ff5187", color: plugin.settings.colorText || "#FFFFFF" }}
+					>
 						{formatPrice(totals.total_price, totals.currency_minor_unit, totals.currency_symbol)}
 					</small>
 				</div>
-
 				{showContentCart && (
 					<div className="px-6 relative left-32 rounded shadow-lg bg-white bg-cart">
 						{isLoading ? (

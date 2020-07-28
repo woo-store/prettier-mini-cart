@@ -1,4 +1,4 @@
-import { PanelBody, PanelRow, ToggleControl, SelectControl, ColorPicker } from "@wordpress/components";
+import { PanelBody, PanelRow, ToggleControl, SelectControl, ColorPalette } from "@wordpress/components";
 
 export default class Settings extends Component {
 	state = {
@@ -11,11 +11,11 @@ export default class Settings extends Component {
 	}
 
 	render() {
-		const { enableCart, position, enableCartPrice, colorMain } = this.state;
-		console.log(colorMain);
+		const { enableCart, position, enableCartPrice, colorMain, colorText } = this.state;
 		const { positions } = this.props;
+		console.log(colorMain, colorText);
 		return (
-			<PanelBody title={__("Cart settings", "vnh_textdomain")}>
+			<PanelBody className="bg-white mb-4" title={__("Cart settings", "vnh_textdomain")}>
 				<PanelRow>
 					<ToggleControl
 						label={__("Enable to show sticky cart", plugin.trans)}
@@ -45,19 +45,31 @@ export default class Settings extends Component {
 						onChange={() => this.setState({ enableCartPrice: !enableCartPrice }, () => this.onChange())}
 					/>
 				</PanelRow>
-				<PanelRow>
-					<ColorPicker
-						color={colorMain}
-						onChangeComplete={(value) => {
-							this.setState(
-								{
-									colorMain: value.hex,
-								},
-								() => this.onChange(),
-							);
-						}}
-						disableAlpha
-					/>
+				<PanelRow className="block">
+					<div className="block w-full">Background icon cart</div>
+					<div className="block w-1/2">
+						<ColorPalette
+							colors={[]}
+							value={colorMain}
+							onChange={(value) => {
+								this.setState({ colorMain: value.hex }, () => this.onChange());
+							}}
+							clearable={false}
+						/>
+					</div>
+				</PanelRow>
+				<PanelRow className="block">
+					<div className="block w-full">Color text cart</div>
+					<div className="block w-1/2">
+						<ColorPalette
+							colors={[]}
+							value={colorText}
+							onChange={(colorText) => {
+								this.setState({ colorText }, () => this.onChange());
+							}}
+							clearable={false}
+						/>
+					</div>
 				</PanelRow>
 			</PanelBody>
 		);

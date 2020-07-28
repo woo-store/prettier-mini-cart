@@ -1,6 +1,6 @@
 import { formatPrice } from "../helper";
-import http from "../../http";
-import { Close } from "../../icons";
+import http from "../http";
+import { Close } from "../icons";
 
 export default class CartContent extends Component {
 	state = {
