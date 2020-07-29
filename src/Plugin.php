@@ -11,7 +11,7 @@
  * Document URI: vnh_document_uri
  * Text Domain: vnh_textdomain
  * Tested up to: WordPress vnh_tested_up_to
- * WC requires at least: 8
+ * WC requires at least: 4.0
  * WC tested up to: vnh_wc_tested_up_to
  */
 

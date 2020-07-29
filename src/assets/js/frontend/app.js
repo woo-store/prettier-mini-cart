@@ -24,11 +24,9 @@ export default class App extends Component {
 	}
 	async componentDidMount() {
 		try {
-			console.log(2);
 			// listen event click
 			document.addEventListener("click", this.handleClick);
 			const { data } = await http.get("wc/store/cart");
-			console.log(data);
 			this.setState({
 				products: data.items,
 				totals: data.totals,

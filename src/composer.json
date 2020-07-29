@@ -12,8 +12,9 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master",
-        "mnsami/composer-custom-directory-installer": "^1.1.1"
+        "kint-php/kint": "^3.3",
+        "mnsami/composer-custom-directory-installer": "^1.1.1",
+        "roave/security-advisories": "dev-master"
     },
     "extra": {
         "installer-paths": {
