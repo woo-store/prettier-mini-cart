@@ -1,4 +1,4 @@
-export const products = [
+const products = [
 	{
 		key: "c51ce410c124a10e0db5e4b97fc2af39",
 		id: 13,
@@ -25,7 +25,7 @@ export const products = [
 	},
 ];
 
-export const totals = {
+const totals = {
 	currency_code: "USD",
 	currency_decimal_separator: ",",
 	currency_minor_unit: 2,
@@ -45,3 +45,32 @@ export const totals = {
 	total_shipping_tax: "0",
 	total_tax: "0",
 };
+
+const positions = [
+	{
+		label: "Left top",
+		value: "left-top",
+	},
+	{
+		label: "Left center",
+		value: "left-center",
+	},
+	{
+		label: "Left bottom",
+		value: "left-bottom",
+	},
+	{
+		label: "Right top",
+		value: "right-top",
+	},
+	{
+		label: "Right center",
+		value: "right-center",
+	},
+	{
+		label: "Right center",
+		value: "right-center",
+	},
+];
+
+export { products, totals, positions };

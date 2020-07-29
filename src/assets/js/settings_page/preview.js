@@ -2,12 +2,7 @@ import { formatPrice } from "../helper";
 import { Close } from "../icons";
 import { products, totals } from "./sample";
 export default class Preview extends Component {
-	componentDidMount() {
-		console.log(products);
-	}
-
 	productsRender = () => {
-		console.log(products);
 		return products.map((product) => {
 			return (
 				<div className="grid grid-cols-10 gap-1 py-2">
