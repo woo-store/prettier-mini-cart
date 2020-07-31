@@ -1,23 +1,26 @@
 import { useEffect, useState } from "@wordpress/element";
 import { Button } from "@wordpress/components";
 import { isEmpty } from "ramda";
-import { saveSettings, useSettings } from "./helpers";
+import apiFetch from "@wordpress/api-fetch";
+import { useSettings } from "./helpers";
 
-import CartSetting from "./cart-setting";
-import ProductSetting from "./product-setting";
-
-const App = () => {
-	const { loading, setLoading, settings, setSettings } = useSettings();
+export default function App() {
+	const [{ settings }, setSettings] = useSettings();
 	const [saving, setSaving] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		// early exit
+		if (isEmpty(settings) || saving === false) return;
+
 		setLoading(true);
-		!isEmpty(settings) && saveSettings(settings, setLoading);
+		apiFetch({ path: pluginApiPath, method: "POST", parse: false, data: settings }).finally(() => {
+			setSaving(false);
+			setLoading(false);
+			console.warn("Settings saved");
+		});
 	}, [saving]);
-	if (isEmpty(settings)) {
-		return null;
-	}
-	console.log(231321);
+
 	return (
 		<>
 			<div className="bg-white py-6 mb-4">
@@ -41,6 +44,6 @@ const App = () => {
 			</div>
 		</>
 	);
-};
+}
 
 export default App;
