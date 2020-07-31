@@ -1,21 +1,36 @@
-import { useEffect, useState } from "@wordpress/element";
-import apiFetch from "@wordpress/api-fetch";
+import http from "../http";
+import { useEffect, useState } from "react";
 
-export const useSettings = () => {
-	const [settings, setSettings] = useState([]);
-	const [loading, setLoading] = useState(true);
+export const useOutsideClick = (ref, callback) => {
+	const handleClick = (e) => {
+		if (ref.current && !ref.current.contains(e.target)) {
+			callback();
+		}
+	};
 
-	useEffect(async () => {
-		setLoading(true);
-		const settings = await apiFetch({ path: pluginApiPath });
-		setSettings(settings);
-		setLoading(false);
-	}, []);
+	useEffect(() => {
+		document.addEventListener("click", handleClick);
 
-	return { loading, setLoading, settings, setSettings };
+		return () => {
+			document.removeEventListener("click", handleClick);
+		};
+	});
 };
 
-export const saveSettings = async (data, setLoading) => {
-	await apiFetch({ path: pluginApiPath, method: "POST", parse: false, data });
-	setLoading(false);
+export const fetchCart = () => {
+	const [cart, setCart] = useState({});
+	http.get("wc/store/cart").then((response) => {
+		setCart(response.data);
+	});
+	return { cart, setCart };
+};
+
+export const updateQuantity = async (key, quantity, setCart) => {
+	const { data } = await http.post("wc/store/cart/update-item", { key, quantity });
+	setCart(data);
+};
+
+export const deleteProduct = async (key, setCart) => {
+	const { data } = await http.post("/wc/store/cart/remove-item", { key });
+	return data;
 };

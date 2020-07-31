@@ -1,7 +1,6 @@
 import { useEffect, useState } from "@wordpress/element";
 import { Button } from "@wordpress/components";
-import isEmpty from "lodash/isEmpty";
-
+import { isEmpty } from "ramda";
 import { saveSettings, useSettings } from "./helpers";
 
 import CartSetting from "./cart-setting";
@@ -15,7 +14,10 @@ const App = () => {
 		setLoading(true);
 		!isEmpty(settings) && saveSettings(settings, setLoading);
 	}, [saving]);
-
+	if (isEmpty(settings)) {
+		return null;
+	}
+	console.log(231321);
 	return (
 		<>
 			<div className="bg-white py-6 mb-4">

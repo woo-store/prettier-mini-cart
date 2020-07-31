@@ -15,7 +15,8 @@
 		"__": true,
 		"pluginName": true,
 		"pluginVersion": true,
-		"pluginApiPath": true
+		"pluginApiPath": true,
+		"plugin": true
 	},
 	"rules": {
 		"no-console": [1, { "allow": ["warn", "error"] }],

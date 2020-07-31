@@ -1,4 +1,4 @@
-import { formatPrice } from "../helper";
+import { formatPrice } from "../common";
 import { Close } from "../icons";
 import { products, totals } from "./sample";
 export default class Preview extends Component {
