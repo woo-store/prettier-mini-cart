@@ -1,7 +1,7 @@
 import { ColorPalette, PanelBody, PanelRow, SelectControl, ToggleControl } from "@wordpress/components";
-import { positions } from "./config";
+import { positions } from "../config";
 
-const CartSetting = ({ settings, setSettings }) => {
+const Cart = ({ settings, setSettings }) => {
 	const { enableCartPrice, enableCart, position, colorMain, colorText } = settings;
 
 	const updateSettings = (data) => setSettings({ ...settings, ...data });
@@ -46,4 +46,4 @@ const CartSetting = ({ settings, setSettings }) => {
 	);
 };
 
-export default CartSetting;
+export default Cart;

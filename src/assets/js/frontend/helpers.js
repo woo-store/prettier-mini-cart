@@ -1,13 +1,12 @@
 import http from "../http";
-import { useEffect, useState } from "react";
-
+import { useEffect, useState } from "@wordpress/element";
+import useOnMount from "../hooks/useOnMount";
 export const useOutsideClick = (ref, callback) => {
 	const handleClick = (e) => {
 		if (ref.current && !ref.current.contains(e.target)) {
 			callback();
 		}
 	};
-
 	useEffect(() => {
 		document.addEventListener("click", handleClick);
 
@@ -17,11 +16,16 @@ export const useOutsideClick = (ref, callback) => {
 	});
 };
 
-export const fetchCart = () => {
-	const [cart, setCart] = useState({});
-	http.get("wc/store/cart").then((response) => {
-		setCart(response.data);
+export const useCart = () => {
+	const [cart, setCart] = useState([]);
+	const fetchCart = async () => {
+		const { data } = await http.get("wc/store/cart");
+		setCart(data);
+	};
+	useOnMount(() => {
+		fetchCart();
 	});
+
 	return { cart, setCart };
 };
 
@@ -32,5 +36,5 @@ export const updateQuantity = async (key, quantity, setCart) => {
 
 export const deleteProduct = async (key, setCart) => {
 	const { data } = await http.post("/wc/store/cart/remove-item", { key });
-	return data;
+	setCart(data);
 };

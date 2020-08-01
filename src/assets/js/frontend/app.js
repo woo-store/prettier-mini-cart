@@ -1,37 +1,23 @@
-import http from "../http";
-import { isEmpty } from "lodash";
+import { isEmpty } from "ramda";
 import CartContent from "./cart";
 import { formatPrice } from "../common";
 import { Cart } from "../icons";
 import { Spinner } from "@wordpress/components";
 import { Component, createRef, useEffect } from "@wordpress/element";
-import { useOutsideClick, updateQuantity } from "./helpers";
+import { useOutsideClick, useCart } from "./helpers";
 import { useRef, useState } from "react";
+import useOnMount from "../hooks/useOnMount";
 
-const App = () => {
-	const [cart, setCart] = useState({});
-	const [products, setProducts] = useState({});
+export default function App() {
+	const { cart, setCart } = useCart();
+	const [loading, setLoading] = useState(false);
 	const [showCart, setShowCart] = useState(false);
+	useEffect(() => {}, cart.items_count);
 	const ref = useRef();
 	useOutsideClick(ref, () => {
 		if (showCart) setShowCart(false);
 	});
-
-	useEffect(() => {
-		// const fetchData = async () => {
-		// 	const { data } = await http.get("wc/store/cart");
-		// 	setCart(data);
-		// };
-		http.get("wc/store/cart").then((response) => {
-			setCart(response.data);
-			setProducts(response.data.items);
-		});
-		// fetchData();
-	}, []);
-
-	if (isEmpty(cart)) {
-		return null;
-	}
+	if (isEmpty(cart)) return null;
 	const { totals, items_count } = cart;
 	return (
 		<div className="font-sans fixed position-cart-left-top z-50	">
@@ -57,21 +43,20 @@ const App = () => {
 			</div>
 			{showCart && (
 				<div className="px-6 relative left-32 rounded shadow-lg bg-white bg-cart">
-					{/*{isLoading ? (*/}
-					{/*	<div className="w-full h-full">*/}
-					{/*		<Spinner />*/}
-					{/*	</div>*/}
-					{/*) : (*/}
-					<div ref={ref}>
-						<div className="py-4 border-neutral-700 border-b border-solid">
-							<div className="font-bold mb-2 text-center">{__("Cart content", "vnh_textdomain")}</div>
+					{loading ? (
+						<div className="w-full h-full">
+							<Spinner />
 						</div>
-						<CartContent products={products} setProducts={setProducts} setCart={setCart} totals={totals} countItems={items_count} />
-					</div>
-					{/*)}*/}
+					) : (
+						<div ref={ref}>
+							<div className="py-4 border-neutral-700 border-b border-solid">
+								<div className="font-bold mb-2 text-center">{__("Cart content", "vnh_textdomain")}</div>
+							</div>
+							<CartContent setCart={setCart} cart={cart} />
+						</div>
+					)}
 				</div>
 			)}
 		</div>
 	);
-};
-export default App;
+}

@@ -1,7 +1,7 @@
-import { formatPrice } from "../common";
-import { Close } from "../icons";
+import { formatPrice } from "../../common";
+import { Close } from "../../icons";
 import { products, totals } from "./sample";
-export default class Preview extends Component {
+export default class Index extends Component {
 	productsRender = () => {
 		return products.map((product) => {
 			return (

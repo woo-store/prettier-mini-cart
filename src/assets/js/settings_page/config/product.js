@@ -1,5 +1,5 @@
 import { PanelBody, PanelRow, ToggleControl } from "@wordpress/components";
-const productSetting = ({ settings, setSettings }) => {
+const Product = ({ settings, setSettings }) => {
 	const { productQuantity, removeProduct, priceTag, totalPrice, subtotalPrice, shippingPrice, taxPrice } = settings;
 
 	const updateSettings = (data) => setSettings({ ...settings, ...data });
@@ -59,4 +59,4 @@ const productSetting = ({ settings, setSettings }) => {
 	);
 };
 
-export default productSetting;
+export default Product;
