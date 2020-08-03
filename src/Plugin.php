@@ -48,15 +48,13 @@ final class Plugin implements Loadable {
 		$services->get(Setting_API::class)->boot();
 
 		$services->get(Allowed_HTML::class)->boot();
+		$services->get(Prettier_Cart::class)->boot();
 
 		if (is_admin()) {
 			$services->get(Plugin_Action_Links::class)->boot();
 			$services->get(Plugin_Row_Meta::class)->boot();
 			$services->get(Settings_Page::class)->boot();
 			$services->get(Enqueue_Backend_Assets::class)->boot();
-		} else {
-			$services->get(Prettier_Cart::class)->boot();
-			$services->get(Enqueue_Frontend_Assets::class)->boot();
 		}
 	}
 
