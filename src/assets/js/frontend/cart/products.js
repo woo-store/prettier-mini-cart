@@ -1,23 +1,25 @@
 import { useState } from "@wordpress/element";
 import { useEffect } from "react";
 import { useDebounceFn } from "ahooks";
-import { deleteProduct, updateQuantity } from "../helpers";
+import { useChangeCart } from "../helpers";
 import { formatPrice } from "../../common";
 import { Close } from "../../icons";
 
-const Products = ({ products, setCart }) => {
-	return products.map((product) => <Product product={product} setCart={setCart} />);
+const Products = ({ products, setCart, setLoading }) => {
+	return products.map((product) => <Product product={product} setCart={setCart} setLoading={setLoading} />);
 };
 
-const Product = ({ product, setCart }) => {
+const Product = ({ product, setCart, setLoading }) => {
+	const { setChange } = useChangeCart({ setCart });
 	const [quantity, setQuantity] = useState(product.quantity);
+
 	useEffect(() => {
 		setQuantity(product.quantity);
 	}, [product.quantity]);
 
 	const { run } = useDebounceFn(
 		(value) => {
-			updateQuantity(product.key, value, setCart);
+			setChange({ key: product.key, quantity: value });
 		},
 		{ wait: 1000 },
 	);
@@ -38,8 +40,9 @@ const Product = ({ product, setCart }) => {
 						<div className="cursor-pointer border-solid border-neutral-400 border flex items-center p-2">
 							<span
 								onClick={() => {
-									setQuantity(quantity - 1);
-									updateQuantity(product.key, quantity - 1, setCart);
+									const q = parseInt(quantity) - 1;
+									setQuantity(q);
+									setChange({ key: product.key, quantity: q });
 								}}
 							>
 								-
@@ -60,8 +63,10 @@ const Product = ({ product, setCart }) => {
 						<div className="cursor-pointer border-solid border-neutral-400 border flex items-center p-2">
 							<span
 								onClick={() => {
-									setQuantity(quantity + 1);
-									updateQuantity(product.key, quantity + 1, setCart);
+									const q = parseInt(quantity) + 1;
+									setLoading(true);
+									setQuantity(q);
+									setChange({ key: product.key, quantity: q });
 								}}
 							>
 								+
@@ -72,7 +77,7 @@ const Product = ({ product, setCart }) => {
 			</div>
 			{plugin.settings.removeProduct && (
 				<div className="text-center col-span-1">
-					<span className="cursor-pointer" onClick={() => deleteProduct(product.key, setCart)}>
+					<span className="cursor-pointer" onClick={() => setChange({ key: product.key })}>
 						<Close />
 					</span>
 				</div>
