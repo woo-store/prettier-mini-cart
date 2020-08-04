@@ -6,7 +6,7 @@ const CartContent = ({ cart, setCart }) => {
 	return (
 		<div className="py-4 overflow-y-scroll">
 			<div className="h-m-450 ">
-				<Products products={products} setCart={setCart} setLoading={setLoading} />
+				<Products products={products} setCart={setCart} />
 				<hr className="m-0" />
 				<Prices totals={totals} />
 			</div>

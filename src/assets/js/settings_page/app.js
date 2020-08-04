@@ -4,7 +4,8 @@ import Cart from "./config/cart";
 import Product from "./config/product";
 import useSettings from "../hooks/useSettings";
 import useSaveSettings from "../hooks/useSaveSettings";
-
+import Preview from "./preview";
+import { cart } from "./config.js";
 export default function App() {
 	const [{ settings }, setSettings] = useSettings();
 	const [saving, setSaving] = useState(false);
@@ -22,7 +23,9 @@ export default function App() {
 			</div>
 
 			<div className="grid grid-cols-3 gap-2 px-3">
-				<div className="sm:col-span-3 md:col-span-1">{/*<Preview />*/}</div>
+				<div className="sm:col-span-3 md:col-span-1">
+					<Preview settings={settings} cart={cart} />
+				</div>
 				<div className="sm:col-span-3 md:col-span-2">
 					<Cart settings={settings} setSettings={setSettings} />
 					<Product settings={settings} setSettings={setSettings} />

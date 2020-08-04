@@ -121,6 +121,7 @@
 		"axios": "^0.19.2",
 		"date-fns": "^2.15.0",
 		"ramda": "^0.27.0",
+		"react-sweet-state": "^2.3.1",
 		"tailwindcss": "^1.4.6"
 	}
 }

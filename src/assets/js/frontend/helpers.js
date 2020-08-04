@@ -1,20 +1,7 @@
 import http from "../http";
 import { useEffect, useState } from "@wordpress/element";
 import { isEmpty, has } from "ramda";
-export const useOutsideClick = (ref, callback) => {
-	const handleClick = (e) => {
-		if (ref.current && !ref.current.contains(e.target)) {
-			callback();
-		}
-	};
-	useEffect(() => {
-		document.addEventListener("click", handleClick);
-
-		return () => {
-			document.removeEventListener("click", handleClick);
-		};
-	});
-};
+import { useStore } from "./store";
 
 export const useCart = () => {
 	const [cart, setCart] = useState([]);
@@ -34,22 +21,21 @@ export const useCart = () => {
 };
 
 export const useChangeCart = ({ setCart }) => {
-	const [loading, setLoading] = useState(false);
+	const [state, actions] = useStore();
 	const [change, setChange] = useState({});
-
 	const updated = async (objUpdate) => {
 		const { data } = await http.post("wc/store/cart/update-item", objUpdate);
 		setCart(data);
-		setLoading(false);
+		actions.setLoading();
 	};
 	const deleted = async (objUpdate) => {
 		const { data } = await http.post("/wc/store/cart/remove-item", objUpdate);
 		setCart(data);
-		setLoading(false);
+		actions.setLoading();
 	};
 	useEffect(() => {
 		if (!isEmpty(change)) {
-			setLoading(true);
+			actions.setLoading();
 			if (has("quantity", change)) {
 				updated(change);
 			} else {
@@ -57,5 +43,5 @@ export const useChangeCart = ({ setCart }) => {
 			}
 		}
 	}, [change]);
-	return { setChange, setLoading, loading };
+	return { setChange };
 };

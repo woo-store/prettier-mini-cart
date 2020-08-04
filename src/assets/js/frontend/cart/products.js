@@ -5,11 +5,11 @@ import { useChangeCart } from "../helpers";
 import { formatPrice } from "../../common";
 import { Close } from "../../icons";
 
-const Products = ({ products, setCart, setLoading }) => {
-	return products.map((product) => <Product product={product} setCart={setCart} setLoading={setLoading} />);
+const Products = ({ products, setCart }) => {
+	return products.map((product) => <Product product={product} setCart={setCart} />);
 };
 
-const Product = ({ product, setCart, setLoading }) => {
+const Product = ({ product, setCart }) => {
 	const { setChange } = useChangeCart({ setCart });
 	const [quantity, setQuantity] = useState(product.quantity);
 
@@ -64,7 +64,6 @@ const Product = ({ product, setCart, setLoading }) => {
 							<span
 								onClick={() => {
 									const q = parseInt(quantity) + 1;
-									setLoading(true);
 									setQuantity(q);
 									setChange({ key: product.key, quantity: q });
 								}}
