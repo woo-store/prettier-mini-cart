@@ -48,6 +48,7 @@
 }
 .content-cart-left-center{
 	 left: 80px;
+	 top: -100px;
 }
 
 .position-cart-left-bottom{
@@ -102,9 +103,10 @@
 .h-m-450{
 	 max-height:450px;
 }
-body .vnh-input > input{
-	 @apply w-full text-center rounded-none p-0 border-r-0 border-l-0;
-	 height: 33px;
+body .vnh-input > input[type=text]{
+	 @apply w-full text-center rounded-none p-0 border-r-0 border-l-0 mx-0;
+	 height: 34px;
+	 border-color: #cbd5e0;
 }
 
 .input-pretitire{
@@ -137,4 +139,10 @@ body .vnh-input > input{
 
 .selectcolor-master{
 	 background: #FF5187;
+}
+.h-33{
+	 height: 33px!important;
+}
+.z-100{
+	 z-index: 100;
 }

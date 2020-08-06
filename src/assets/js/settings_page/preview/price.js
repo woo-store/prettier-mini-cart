@@ -4,7 +4,7 @@ const Prices = ({ totals, settings }) => {
 	const { currency_minor_unit: unit, currency_symbol: symbol } = totals;
 
 	return [
-		<div className="p-2 text-2xl">
+		<div className="p-2">
 			{settings.subtotalPrice && (
 				<div className="flex justify-between mt-3">
 					<div className="txt ~neutral">{__("Subtotal", "vnh_textdomain")}</div>
@@ -27,7 +27,7 @@ const Prices = ({ totals, settings }) => {
 		<div>
 			{settings.totalPrice && [
 				<hr className="m-0" />,
-				<div className="text-2xl px-2 pt-3 flex justify-between mb-4">
+				<div className="px-2 pt-3 flex justify-between mb-4">
 					<div className="txt ~neutral">{__("Total", "vnh_textdomain")}</div>
 					<div>{formatPrice(totals.total_price, unit, symbol)}</div>
 				</div>,
