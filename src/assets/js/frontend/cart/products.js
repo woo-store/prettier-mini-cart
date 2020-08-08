@@ -50,7 +50,7 @@ const Product = ({ product, setCart }) => {
 						</div>
 						<div className="input-pretitire vnh-input">
 							<input
-								className="h-33"
+								className="h-30"
 								onChange={(e) => {
 									setQuantity(e.target.value);
 									run(e.target.value);

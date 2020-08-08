@@ -84,7 +84,7 @@ const IconCart = ({ cart }) => {
 					className="badge-circle ~success ~high absolute position-quantity"
 					style={{ "background-color": plugin.settings.colorMain || "#ff5187", color: plugin.settings.colorText || "#FFFFFF" }}
 				>
-					<small>{items_count || 0}</small>
+					<small>{items_count != 0 && items_count}</small>
 				</div>
 			)}
 			{totals && (

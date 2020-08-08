@@ -34,91 +34,107 @@
 	}
 }
 /* position cart */
-.position-cart-left-top{
+.position-cart-left-top {
 	 top: 10%;
 	 left: 70px;
 }
-.content-cart-left-top{
+
+.content-cart-left-top {
 	 left: 80px;
 }
 
-.position-cart-left-center{
+.position-cart-left-center {
 	 left: 70px;
-	 top: calc((100% - 60px)/2);
+	 top: calc((100% - 60px) / 2);
 }
-.content-cart-left-center{
+
+.content-cart-left-center {
 	 left: 80px;
 	 top: -100px;
 }
 
-.position-cart-left-bottom{
+.position-cart-left-bottom {
 	 left: 70px;
 	 top: 85%;
 }
-.content-cart-left-bottom{
+
+.content-cart-left-bottom {
 	 left: 80px;
 	 top: -410px;
 }
 
 
-.position-cart-right-top{
+.position-cart-right-top {
 	 top: 10%;
 	 right: 100px;
 }
-.content-cart-right-top{
+
+.content-cart-right-top {
 	 right: 80px;
 }
 
-.position-cart-right-center{
+.position-cart-right-center {
 	 right: 70px;
-	 top: calc((100% - 60px)/2);
+	 top: calc((100% - 60px) / 2);
 }
-.content-cart-right-center{
+
+.content-cart-right-center {
 	 right: 80px;
 	 top: -100px;
 }
 
-.position-cart-right-bottom{
+.position-cart-right-bottom {
 	 right: 70px;
 	 top: 85%;
 }
-.content-cart-right-bottom{
+
+.content-cart-right-bottom {
 	 right: 80px;
 	 top: -410px;
 }
+
 /**/
-.bg-cart::after{
-	@apply w-full h-full;
+.bg-cart::after {
+	 @apply w-full h-full;
 	 opacity: 0.8;
-	content: '';
+	 content: '';
 	 position: fixed;
 	 left: 0;
 	 top: 0;
 	 z-index: -1;
-	 background-color: rgba(0,0,0,.8);
+	 background-color: rgba(0, 0, 0, .8);
 }
-.bg-cart{
+
+.bg-cart {
 	 max-width: 400px;
 }
-.h-m-450{
-	 max-height:450px;
+
+.h-m-450 {
+	 max-height: 450px;
 }
-body .vnh-input > input[type=text]{
+
+.h-450 {
+	 height: 450px
+}
+
+body .vnh-input > input[type=text] {
 	 @apply w-full text-center rounded-none p-0 border-r-0 border-l-0 mx-0;
 	 height: 34px;
 	 border-color: #cbd5e0;
 }
 
-.input-pretitire{
+.input-pretitire {
 	 display: inline-block;
 	 width: 44px;
 	 height: 30px;
 	 vertical-align: middle;
 }
+
 ::-webkit-scrollbar {
 	 -webkit-appearance: none;
 	 width: 7px;
 }
+
 ::-webkit-scrollbar-thumb {
 	 border-radius: 4px;
 	 background-color: rgba(0, 0, 0, .5);
@@ -129,20 +145,23 @@ body .vnh-input > input[type=text]{
 	 background-color: var(--color-primary-200);
 }
 
-.position-quantity{
-	right:-20px;
-	 top:-20px
+.position-quantity {
+	 right: -20px;
+	 top: -20px
 }
-.z--1{
+
+.z--1 {
 	 z-index: -1;
 }
 
-.selectcolor-master{
+.selectcolor-master {
 	 background: #FF5187;
 }
-.h-33{
-	 height: 33px!important;
+
+.h-30 {
+	 height: 30px !important;
 }
-.z-100{
+
+.z-100 {
 	 z-index: 100;
 }
